@@ -17,6 +17,23 @@
         /// <summary>
         /// The decrypt.
         /// </summary>
+        /// <param name="configServiceKey">
+        /// The config service key.
+        /// </param>
+        /// <param name="encryptedValue">
+        /// The encrypted value.
+        /// </param>
+        /// <returns>
+        /// The <see cref="string"/>.
+        /// </returns>
+        public static string Decrypt(SecureString configServiceKey, string encryptedValue)
+        {
+            return Decrypt(GetUsableString(configServiceKey), encryptedValue);
+        }
+
+        /// <summary>
+        /// The decrypt.
+        /// </summary>
         /// <param name="password">
         /// The password.
         /// </param>
@@ -54,6 +71,23 @@
             }
 
             return decrypted;
+        }
+
+        /// <summary>
+        /// The encrypt.
+        /// </summary>
+        /// <param name="password">
+        /// The password.
+        /// </param>
+        /// <param name="plain_text">
+        /// The plain_text.
+        /// </param>
+        /// <returns>
+        /// The <see cref="string"/>.
+        /// </returns>
+        public static string Encrypt(SecureString password, string plain_text)
+        {
+            return Encrypt(GetUsableString(password), plain_text);
         }
 
         /// <summary>

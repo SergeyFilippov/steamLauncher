@@ -37,7 +37,7 @@
             {
                 configService = new ConfigurationService();
                 userService = new UserService(configService);
-                steamService = new SteamService(configService);
+                steamService = new SteamService(configService, userService);
 
                 return Parser.Default.ParseArguments<AddParams, RunParams, ListParams, DeleteParams, ConfigParams>(args).MapResult(
                     (AddParams opts) => ExecutAddParams(opts),
@@ -50,14 +50,15 @@
             catch (ApplicationException exception)
             {
                 Console.WriteLine(exception.Message);
-                return 2;
+                ExitWithWait(2);
             }
             catch (FileNotFoundException exception)
             {
                 Console.WriteLine(exception.Message);
-                return 4;
+                ExitWithWait(4);
             }
-            
+
+            return 0;
         }
 
         /// <summary>
@@ -140,6 +141,17 @@
             return 0;
         }
 
+        /// <summary>
+        /// The execute run params.
+        /// </summary>
+        /// <param name="runParams">
+        /// The run params.
+        /// </param>
+        /// <returns>
+        /// The <see cref="int"/>.
+        /// </returns>
+        /// <exception cref="ApplicationException">
+        /// </exception>
         private static int ExecuteRunParams(RunParams runParams)
         {
             var config = configService.ReadConfiguration();
@@ -153,7 +165,24 @@
                 throw new ApplicationException("Looks like steam path is not valid. Please run 'config' with correct steam path once more.");
             }
 
+            if (runParams.Number > 0 && !string.IsNullOrEmpty(runParams.User))
+            {
+                throw new ApplicationException("Both user number and name are provided. Only one of the following fields can be used.");
+            }
 
+            if (runParams.Number > 0)
+            {
+                steamService.RunForAccount(runParams.Number);
+                return 0;
+            }
+
+            if (!string.IsNullOrEmpty(runParams.User))
+            {
+                steamService.RunForAccount(runParams.User);
+                return 0;
+            }
+
+            throw new ApplicationException("For deleting the user entry, at least valid number or a name must be provided.");
         }
 
         /// <summary>
@@ -170,6 +199,13 @@
             var user = new UserData { User = addParams.User, Secret = addParams.Secret };
             userService.AddUser(user);
             return 0;
+        }
+
+        private static void ExitWithWait(int exitCode)
+        {
+            Console.WriteLine("Press any key to continue...");
+            Console.ReadKey();
+            Environment.Exit(exitCode);
         }
     }
 }

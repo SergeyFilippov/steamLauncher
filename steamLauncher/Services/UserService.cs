@@ -54,7 +54,7 @@
 
             user.Id = this.GetNextId();
             user.CreatedOn = DateTime.Now;
-            user.Secret = EncryptionHelper.Encrypt(this.GetUsableKey(), user.Secret);
+            user.Secret = EncryptionHelper.Encrypt(this.configService.Key, user.Secret);
             this.data.Accounts.Add(user);
 
             this.SaveChanges();
@@ -170,16 +170,11 @@
         }
 
         /// <summary>
-        /// The get usable key.
+        /// The get next id.
         /// </summary>
         /// <returns>
-        /// The <see cref="string"/>.
+        /// The <see cref="int"/>.
         /// </returns>
-        private string GetUsableKey()
-        {
-            return EncryptionHelper.GetUsableString(this.configService.Key);
-        }
-
         private int GetNextId()
         {
             var result = 1;
