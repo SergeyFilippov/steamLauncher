@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "steamLauncher": {
+      "commandName": "Project",
+      "commandLineArgs": "add -u test -s \"Start1234\""
+    }
+  }
+}
