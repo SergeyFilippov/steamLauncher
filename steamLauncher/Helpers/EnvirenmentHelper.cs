@@ -33,7 +33,7 @@
             {
                 return appDataDirectory ?? (appDataDirectory =
                                                 Path.Combine(
-                                                    Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "steamLauncher"));
+                                                    Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), ".steamLauncher"));
             }
         }
 

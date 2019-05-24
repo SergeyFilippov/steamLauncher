@@ -67,7 +67,7 @@
         {
             if (this.IsSteamRunning())
             {
-                throw new ApplicationException("Steam is already running. Please turn it of before starting new.");
+                throw new ApplicationException("Steam is already running. Please turn it off before starting new.");
             }
 
             var startInfo = new ProcessStartInfo();
