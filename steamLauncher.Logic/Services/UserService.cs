@@ -1,12 +1,11 @@
-﻿namespace SteamLauncher.Services
+﻿namespace steamLauncher.Logic.Services
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    using System.Text;
 
-    using SteamLauncher.AppConfiguration;
-    using SteamLauncher.Helpers;
+    using steamLauncher.Logic.AppConfiguration;
+    using steamLauncher.Logic.Helpers;
 
     /// <summary>
     /// The configuration service.

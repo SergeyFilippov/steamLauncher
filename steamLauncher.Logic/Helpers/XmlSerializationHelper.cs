@@ -1,4 +1,4 @@
-﻿namespace SteamLauncher.Helpers
+﻿namespace steamLauncher.Logic.Helpers
 {
     using System;
     using System.IO;

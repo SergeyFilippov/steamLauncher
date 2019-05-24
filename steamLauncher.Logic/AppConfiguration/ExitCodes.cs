@@ -1,4 +1,4 @@
-﻿namespace SteamLauncher.AppConfiguration
+﻿namespace steamLauncher.Logic.AppConfiguration
 {
     /// <summary>
     /// The exit codes.

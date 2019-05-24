@@ -1,7 +1,6 @@
-﻿namespace SteamLauncher.AppConfiguration
+﻿namespace steamLauncher.Logic.AppConfiguration
 {
     using System;
-    using System.Net.NetworkInformation;
 
     public class UserData
     {

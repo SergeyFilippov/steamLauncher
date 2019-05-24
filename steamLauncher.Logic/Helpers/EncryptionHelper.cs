@@ -1,7 +1,6 @@
-﻿namespace SteamLauncher.Helpers
+﻿namespace steamLauncher.Logic.Helpers
 {
     using System;
-    using System.Buffers.Text;
     using System.IO;
     using System.Security;
     using System.Security.Cryptography;

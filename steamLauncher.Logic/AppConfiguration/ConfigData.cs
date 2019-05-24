@@ -1,7 +1,6 @@
-﻿namespace SteamLauncher.AppConfiguration
+﻿namespace steamLauncher.Logic.AppConfiguration
 {
     using System.Collections.Generic;
-    using System.Xml.Linq;
     using System.Xml.Serialization;
 
     /// <summary>

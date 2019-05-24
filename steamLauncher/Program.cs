@@ -2,14 +2,14 @@
 {
     using System;
     using System.IO;
-    using System.Runtime.CompilerServices;
     using System.Text;
 
     using CommandLine;
 
-    using SteamLauncher.AppConfiguration;
     using SteamLauncher.CommandConfiguration;
-    using SteamLauncher.Services;
+
+    using steamLauncher.Logic.AppConfiguration;
+    using steamLauncher.Logic.Services;
 
     /// <summary>
     /// The program.
