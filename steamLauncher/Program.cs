@@ -45,17 +45,17 @@
                     (ListParams opts) => ExecuteListParams(opts),
                     (DeleteParams opts) => ExecuteDeleteParams(opts),
                     (ConfigParams opts) => ExecuteConfigParams(opts),
-                    errs => 1);
+                    errs => ExitCodes.GeneralError);
             }
             catch (ApplicationException exception)
             {
                 Console.WriteLine(exception.Message);
-                ExitWithWait(2);
+                ExitWithWait(ExitCodes.ApplicationError);
             }
             catch (FileNotFoundException exception)
             {
                 Console.WriteLine(exception.Message);
-                ExitWithWait(4);
+                ExitWithWait(ExitCodes.ConfigurationError);
             }
 
             return 0;
@@ -82,7 +82,7 @@
             var config = configService.ReadConfiguration();
             config.SteamPath = configParams.SteamPath;
             configService.SaveConfiguration(config);
-            return 0;
+            return ExitCodes.Ok;
         }
 
         /// <summary>
@@ -106,13 +106,13 @@
             if (deleteParams.Number > 0)
             {
                 userService.DeleteUser(deleteParams.Number);
-                return 0;
+                return ExitCodes.Ok;
             }
 
             if (!string.IsNullOrEmpty(deleteParams.User))
             {
                 userService.DeleteUser(deleteParams.User);
-                return 0;
+                return ExitCodes.Ok;
             }
 
             throw new ApplicationException("For deleting the user entry, at least valid number or a name must be provided.");
@@ -138,7 +138,7 @@
 
             Console.WriteLine();
             Console.WriteLine(builder.ToString());
-            return 0;
+            return ExitCodes.Ok;
         }
 
         /// <summary>
@@ -173,13 +173,13 @@
             if (runParams.Number > 0)
             {
                 steamService.RunForAccount(runParams.Number);
-                return 0;
+                return ExitCodes.Ok;
             }
 
             if (!string.IsNullOrEmpty(runParams.User))
             {
                 steamService.RunForAccount(runParams.User);
-                return 0;
+                return ExitCodes.Ok;
             }
 
             throw new ApplicationException("For deleting the user entry, at least valid number or a name must be provided.");
@@ -198,7 +198,7 @@
         {
             var user = new UserData { User = addParams.User, Secret = addParams.Secret };
             userService.AddUser(user);
-            return 0;
+            return ExitCodes.Ok;
         }
 
         private static void ExitWithWait(int exitCode)
