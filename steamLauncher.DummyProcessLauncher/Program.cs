@@ -1,12 +1,15 @@
 ﻿using System;
+using System.Runtime.CompilerServices;
+
+[assembly:InternalsVisibleTo("steamLauncher.Tests")]
 
 namespace steamLauncher.DummyProcessLauncher
 {
     using System.Diagnostics;
 
-    class Program
+    internal class Program
     {
-        static int Main(string[] args)
+        internal static int Main(string[] args)
         {
             if (args == null)
             {
@@ -33,7 +36,7 @@ namespace steamLauncher.DummyProcessLauncher
         }
 
         [Flags]
-        private enum ExitCodes
+        internal enum ExitCodes
         {
             Ok = 0,
             GenericError,
