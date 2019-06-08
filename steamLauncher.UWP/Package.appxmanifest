@@ -4,7 +4,11 @@
   xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
   xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
   xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
-  IgnorableNamespaces="uap mp">
+  xmlns:iot="http://schemas.microsoft.com/appx/manifest/iot/windows10"
+  xmlns:rescap=
+  "http://schemas.microsoft.com/appx/manifest/foundation/windows10/restrictedcapabilities"
+  xmlns:desktop="http://schemas.microsoft.com/appx/manifest/desktop/windows10"
+  IgnorableNamespaces="uap mp iot">
 
   <Identity
     Name="caa0e693-2807-43c0-857e-f4b0406a8642"
@@ -14,8 +18,8 @@
   <mp:PhoneIdentity PhoneProductId="caa0e693-2807-43c0-857e-f4b0406a8642" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
 
   <Properties>
-    <DisplayName>steamLauncher.UWP</DisplayName>
-    <PublisherDisplayName>fenri</PublisherDisplayName>
+    <DisplayName>steamLauncher</DisplayName>
+    <PublisherDisplayName>fenriv</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
 
@@ -32,18 +36,28 @@
       Executable="$targetnametoken$.exe"
       EntryPoint="steamLauncher.UWP.App">
       <uap:VisualElements
-        DisplayName="steamLauncher.UWP"
+        DisplayName="Steam Launcher"
         Square150x150Logo="Assets\Square150x150Logo.png"
         Square44x44Logo="Assets\Square44x44Logo.png"
-        Description="steamLauncher.UWP"
+        Description="Steam Launcher"
         BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png"/>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
       </uap:VisualElements>
+      <Extensions>
+        <Extension Category="windows.restrictedLaunch"/>
+        <desktop:Extension Category="windows.fullTrustProcess" Executable="Assets\Launcher.exe">
+          <desktop:FullTrustProcess>
+            <desktop:ParameterGroup GroupId="SteamGroup" Parameters="Steam.exe"/>
+          </desktop:FullTrustProcess>
+        </desktop:Extension>
+      </Extensions>
     </Application>
   </Applications>
 
   <Capabilities>
     <Capability Name="internetClient" />
+    <rescap:Capability Name="runFullTrust"/>
+    <iot:Capability Name="systemManagement"/>
   </Capabilities>
 </Package>

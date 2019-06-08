@@ -12,11 +12,14 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.ApplicationModel;
 
 // The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace steamLauncher.UWP
 {
+    using Windows.Foundation.Metadata;
+
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
@@ -25,6 +28,17 @@ namespace steamLauncher.UWP
         public MainPage()
         {
             this.InitializeComponent();
+
+            this.Test();
+        }
+
+        private async void Test()
+        {
+            if (ApiInformation.IsApiContractPresent("Windows.ApplicationModel.FullTrustAppContract", 1, 0))
+            {
+                await FullTrustProcessLauncher.LaunchFullTrustProcessForCurrentAppAsync();
+                FullTrustProcessLauncher.
+            }
         }
     }
 }
