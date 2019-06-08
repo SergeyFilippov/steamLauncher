@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\steamLauncher.DummyProcessLauncher\steamLauncher.DummyProcessLauncher.csproj" />
+    <ProjectReference Include="..\steamLauncher.Logic\steamLauncher.Logic.csproj" />
   </ItemGroup>
 
 </Project>
